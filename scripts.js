@@ -23,6 +23,33 @@ window.addEventListener("load",function() {
         }
     });
 
+    let rocket = document.getElementById("rocket");
+    rocket.style.position = "absolute";
+
+    rocket.style.left = "0px";
+    rocket.style.bottom = "0px";
+
+    let up = document.getElementById("up");
+    up.addEventListener("click", function (event) {
+        moveShuttle("up", rocket);
+    });
+
+    let down = document.getElementById("down");
+    down.addEventListener("click", function (event) {
+        moveShuttle("down", rocket);
+    });
+
+    let left = document.getElementById("left");
+    left.addEventListener("click", function (event) {
+        moveShuttle("left", rocket);
+    });
+
+    let right = document.getElementById("right");
+    right.addEventListener("click", function (event) {
+        moveShuttle("right", rocket);
+    });
+
+
 });
 
 function landShuttle() {
@@ -61,6 +88,25 @@ function abortMission() {
     shuttleBackground.style.backgroundColor = "green";
 
     shuttleHeight.innerHTML = 0;
+}
+
+function moveShuttle(direction, rocket) {
+    
+    let bottomOfRocket = parseInt(rocket.style.bottom);
+    let leftOfRocket = parseInt(rocket.style.left);
+    let shuttleHeight = document.getElementById("spaceShuttleHeight");
+
+    if(direction === "up") {
+        rocket.style.bottom = bottomOfRocket + 10 + "px";
+        shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) + 10000;
+    } else if (direction === "down") {
+        rocket.style.bottom = bottomOfRocket - 10 + "px";
+        shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) - 10000;
+    } else if (direction === "left") {
+        rocket.style.left = leftOfRocket + 10 + "px";
+    } else if (direction === "right") {
+        rocket.style.left = leftOfRocket - 10 + "px";
+    }
 }
 
 
